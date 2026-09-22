@@ -1,0 +1,156 @@
+<html>
+
+<HEAD>
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Original:  CodeLifter.com (support@codelifter.com) -->
+
+<!-- Web Site:  http://www.codelifter.com -->
+
+
+
+<!-- This script and many more are available free online at -->
+
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+
+
+<!-- Begin
+
+// Set slideShowSpeed (milliseconds)
+
+var slideShowSpeed = 3000;
+
+// Duration of crossfade (seconds)
+
+var crossFadeDuration = 3;
+
+// Specify the image files
+
+var Pic = new Array();
+
+// to add more images, just continue
+
+// the pattern, adding to the array below
+
+
+
+Pic[0] = 'bc0.jpg'
+
+Pic[1] = 'bc1.jpg'
+
+Pic[2] = 'bc2.jpg'
+
+Pic[3] = 'bc3.jpg'
+
+
+
+
+
+
+
+// do not edit anything below this line
+
+var t;
+
+var j = 0;
+
+var p = Pic.length;
+
+var preLoad = new Array();
+
+for (i = 0; i < p; i++) {
+
+preLoad[i] = new Image();
+
+preLoad[i].src = Pic[i];
+
+}
+
+function runSlideShow() {
+
+if (document.all) {
+
+document.images.SlideShow.style.filter="blendTrans(duration=2)";
+
+document.images.SlideShow.style.filter="blendTrans(duration=crossFadeDuration)";
+
+document.images.SlideShow.filters.blendTrans.Apply();
+
+}
+
+document.images.SlideShow.src = preLoad[j].src;
+
+if (document.all) {
+
+document.images.SlideShow.filters.blendTrans.Play();
+
+}
+
+j = j + 1;
+
+if (j > (p - 1)) j = 0;
+
+t = setTimeout('runSlideShow()', slideShowSpeed);
+
+}
+
+//  End -->
+
+</script>
+
+
+
+</HEAD>
+
+
+
+<BODY onLoad="runSlideShow()" bgcolor="#000000" text="#FFCC00">
+
+<!-- THREE STEPS TO INSTALL FADING SLIDE SHOW:
+
+
+
+  1.  Copy the coding into the HEAD of your HTML document
+
+  2.  Add the onLoad event handler into the BODY tag
+
+  3.  Put the last coding into the BODY of your HTML document  -->
+
+<!-- STEP ONE: Paste this code into the HEAD of your HTML document  -->
+
+<!-- STEP TWO: Insert the onLoad event handler into your BODY tag  -->
+
+<!-- STEP THREE: Copy this code into the BODY of your HTML document  -->
+
+<table width="400" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr> 
+
+    <td id="VU" height=500 width=455 align="center" valign="top"> 
+
+      <div align="center"><img src="1.jpg" name='SlideShow' width=400 height=400 align="top"> 
+
+      </div>
+
+    </td>
+
+  </tr>
+
+</table>
+
+
+
+
+
+
+
+<!-- Script Size:  2.13 KB -->
+
+</body>
+
+</html>
+

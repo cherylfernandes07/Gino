@@ -1,0 +1,120 @@
+
+<HTML>
+<HEAD>
+<TITLE>Gino's Pictures</TITLE>
+</HEAD>
+
+<STYLE>
+
+A:link {backgroud:#000000; color:#FF6600; text-decoration:none}
+A:visited {backgroud:#000000; color:#FF6600; text-decoration:none}
+A:active {backgroud:#000000; color:#FF6600; text-decoration:none}
+A:hover {backgroud:#FFFFC6; color:#FF0000; text-decoration:none}
+
+SPAN { margin: 6; }
+</STYLE>
+
+<SCRIPT>
+var nSlides = 7;
+var szImagePath = "images";
+var hFilm = 50;  // film strip height
+var wFilm = 50;  // film strip width
+
+var oImageInfo = null;
+
+// Add the list of image file names to the image tracking object.  Note that 
+// every file will be accessed from the directory listed in the variable 
+// szImagePath.
+function AddImages( )
+{
+	if (oImageInfo == null)
+	{
+		oImageInfo = new Object( );
+		oImageInfo.rgImages = new Array(
+			"ck0.jpg","ck1.jpg", "ck2.jpg", "ck3.jpg", "ck4.jpg", "ck5.jpg", "ck6.jpg");
+		oImageInfo.iStart = 0;
+		oImageInfo.iDisplay = 0;
+	}
+}
+
+// Establish the indicated slide (image) number as the primary content image.  
+// Keep track of which image is the main image.
+function SetMainImage(iImage)
+{
+	var szFile = oImageInfo.rgImages[iImage];
+	var szImgTag = "<IMG src='images/" + szFile + "' alt='" + szFile + "'>";
+
+	oImageInfo.iDisplay = iImage;
+	document.all.idDisplay.innerHTML = szImgTag;
+}
+
+// Create an image tag using the indicated slide number, shrinking it down to 100x100.
+function MakeStripTag(iImage)
+{
+	var szFile = oImageInfo.rgImages[iImage];
+	var szTag = 
+		"<IMG src='" + szImagePath + "/" + szFile + "' height='" + hFilm + "' width='" + wFilm + 
+		"' onclick='SetMainImage(" + iImage + ")' alt='" + szFile + "'>";
+	return (szTag);
+}
+
+// Set the starting image for the film strip.  Adjust the main image so that 
+// it is always one of the film strip images.  Specify 0 for the first image, 1 
+// for the second, etc.
+function SetStripPos(iStart)
+{
+	AddImages( );
+	oImageInfo.iStart = iStart;
+	if (oImageInfo.iDisplay < oImageInfo.iStart)
+		SetMainImage(oImageInfo.iStart);
+	if (oImageInfo.iDisplay >= (oImageInfo.iStart + nSlides))
+		SetMainImage(oImageInfo.iStart + nSlides - 1);
+
+	document.all.idSlide1.innerHTML = MakeStripTag(oImageInfo.iStart);
+	document.all.idSlide2.innerHTML = MakeStripTag(oImageInfo.iStart + 1);
+	document.all.idSlide3.innerHTML = MakeStripTag(oImageInfo.iStart + 2);
+	document.all.idSlide4.innerHTML = MakeStripTag(oImageInfo.iStart + 3);
+    document.all.idSlide5.innerHTML = MakeStripTag(oImageInfo.iStart + 4);
+	document.all.idSlide6.innerHTML = MakeStripTag(oImageInfo.iStart + 5);
+	document.all.idSlide6.innerHTML = MakeStripTag(oImageInfo.iStart + 6);
+	
+}
+
+// Move the film strip closer to the start (left) of the list.
+function DecrementStrip( )
+{
+	AddImages( );
+	if (oImageInfo.iStart < 0)
+		SetStripPos(oImageInfo.iStart - 1);
+}
+
+// Move the film strip closer to the end (right) of the list.
+function IncrementStrip( )
+{
+	AddImages( );
+	if ((oImageInfo.iStart + nSlides) < oImageInfo.rgImages.length)
+		SetStripPos(oImageInfo.iStart + 1);
+}
+</SCRIPT>
+
+<BODY bgcolor="#000000" text="#FFCC00">
+
+<DIV id="idDisplay" align="center"></DIV>
+
+  
+<HR width="500" color="#FFCC00">
+<div align="center">
+    
+    <SPAN id="idSlide1" width='75'></SPAN> <SPAN id="idSlide2" width='75'></SPAN> 
+    <SPAN id="idSlide3" width='75'></SPAN> <SPAN id="idSlide4" width='75'></SPAN> 
+    <SPAN id="idSlide5" width='75'></SPAN> <SPAN id="idSlide6" width='75'></SPAN> 
+	<SPAN id="idSlide7" width='75'></SPAN>      
+  </div>
+
+<div align="center">
+  <SCRIPT>SetStripPos(0);</SCRIPT>
+  <hr width="500" color="#FFCC00">
+  <font size="2" color="#6600FF">Script by downtnmark@hotmail.com</font></div>
+</BODY>
+</HTML>
+
